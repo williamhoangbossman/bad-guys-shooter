@@ -7,7 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden;
+    overflow: hidden; 
     font-family: "Press Start 2P", system-ui;
     color: #ffffff;
     -webkit-user-select:none;
@@ -16,6 +16,40 @@ body {
     -o-user-select:none;
 user-select:none;
 pointer-events:none
+}
+
+#moneyScore {
+    font-size: 41px;
+    position: relative;
+    transform: translate(40px, -32px);
+}
+
+#emerald {
+    width: 60px;
+    height: 65px;
+    background-image: url('PNGS/emerald.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: relative;
+    transform: translate(-40px, 15px);
+}
+
+#scoreStar {
+    width: 50px;
+    height: 50px;
+    background-image: url('PNGS/scoreStar.png');
+    background-size: contain;
+    background-position: left;
+    background-repeat: no-repeat;
+    position: relative;
+    transform: translate(-360px, 30px);
+}
+
+#scoreBoard {
+    margin-top: 10px;
+    font-size: 30px;
+    transform: translate(0, -850px);
 }
 
 #hud {
@@ -38,54 +72,31 @@ pointer-events:none
     background-color: black;
     background-image: url('/BGS/SPACE.png');
     background-position: center;
-
     position: relative; 
-}
 
-#minecraftDiamond {
-    width: 60px;
-    height: 65px;
-
-    background-image: url('PNGS/minecraftDiamond.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    position: relative;
-
-    transform: translate(-410px, 20px);
 }
 
 #bossenemy1 {
-
     width: 320px;
     height: 320px;
-
     background-image: url('/animatedSprites/purpleboss.gif');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     position: absolute;
-
 }
 
 #spaceship {
-   
     width: 73px; 
     height: 85px;
-
-    
     background-image: url('/PNGS/spaceshipshooter.png'); 
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-
-
     position: absolute; 
 }
 
-
-
-/* Bullet Laser styling (Converted to class for dynamic multiple spawns) */
+/* Bullet Laser */
 .bullet {
     width: 10px;
     height: 60px;

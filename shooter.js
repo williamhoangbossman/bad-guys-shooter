@@ -2,8 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const spaceship = document.getElementById('spaceship');
     const grid = document.getElementById('grid');
     const enemy = document.getElementById('bossenemy1');
-    const money = document.getElementById('minecraftDiamond')  
-
+    const moneyScore = document.getElementById('moneyScore')
+    const scoreNumber = document.getElementById('scoreNumber');
+    let actualMoney = 0;
+    let actualScore = 0;
     
     const gridWidth = 900;
     const shipWidth = 70;
@@ -63,9 +65,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    function addMoney() {
+       actualMoney +=1
+       moneyScore.textContent = actualMoney
+        console.log(moneyScore)
+    }
+
+    function addScore() {
+        actualScore += 3602190
+        scoreNumber.textContent = actualScore
+        console.log(scoreNumber)
+    }
+
+// bullet stuffs
     function fireBullet() {
         const now = Date.now();
-        if (now - lastShotTime < fireCooldown) return;
+        if (now - lastShotTime <= fireCooldown) return;
 
         lastShotTime = now;
 
@@ -86,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
             y: bulletY
         });
     }
-
+//game func
     function gameLoop() {
         if (keysPressed.ArrowLeft || keysPressed.a) {
             shipX -= 3.5;
@@ -103,6 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         spaceship.style.left = shipX + 'px';
 
+//enemy movement loop
         if (enemy) {
             enemyX += enemySpeed;
 
@@ -127,6 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
             fireBullet();
         }
 
+//hitbox check / bullet removal 
         for (let i = bullets.length - 1; i >= 0; i--) {
             const bullet = bullets[i];
             
@@ -150,6 +167,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 ) { 
                     bullet.element.remove();
                     bullets.splice(i, 1);
+                    
+                    addMoney()
+                    addScore()
+
+                    scoreNumber
                     continue;
                 }
             }

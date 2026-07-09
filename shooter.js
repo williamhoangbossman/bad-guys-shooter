@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", () => {
     const spaceship = document.getElementById('spaceship');
     const grid = document.getElementById('grid');

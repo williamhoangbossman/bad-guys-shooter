@@ -86,6 +86,16 @@ pointer-events:none
     position: absolute;
 }
 
+#john {
+
+    width: 175px;
+    height: 175px;
+    background-image: url('/animatedSprites/Creature.gif');
+    background-position: right;
+    position: absolute;
+    transform: translate(-400px);
+}
+
 #spaceship {
     width: 73px; 
     height: 85px;
@@ -114,84 +124,4 @@ img {
     -o-user-select:none;
     user-select:none;
     pointer-events:none
-}
-    body {
-            margin: 0;
-            padding: 0;
-            background-color: #000000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-            font-family: "Press Start 2P", system-ui;
-            color: #ffffff;
-            -webkit-user-select:none;
-            -khtml-user-select:none;
-            -moz-user-select:none;
-            -o-user-select:none;
-      user-select:none;
-      pointer-events:none
-        }
-
-        #hud {
-            margin-bottom: 10px;
-            text-align: center;
-            font-size: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #ffffff;
-        }
-
-        #hud span {
-            color: #77d5f1;
-            font-weight: bold;
-        }
-
-        .grid-container {
-            width: 900px; 
-            height: 600px; 
-            background-color: black;
-            /* Starry effect background */
-            background-image: url('/BGS/SPACE.png');
-            background-position: center;
-            
-            position: relative; 
-        }
-
-        /* Spaceship Styling */
-        #spaceship {
-            /* Set your ship size (adjust as needed) */
-            width: 73px; 
-            height: 85px;
-            
-            /* Loads your spaceship image */
-            background-image: url('/PNGS/spaceshipshooter.png'); 
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-
-            /* Absolute positioning relative to the grid container */
-            position: absolute; 
-        }
-
-        /* Bullet Laser styling (Converted to class for dynamic multiple spawns) */
-        .bullet {
-            width: 10px;
-            height: 60px;
-            background-image: url('/PNGS/LaserBullet1.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            position: absolute;
-        }
-
-        img {
-            -webkit-user-select:none;
-            -khtml-user-select:none;
-            -moz-user-select:none;
-            -o-user-select:none;
-            user-select:none;
-            pointer-events:none
 }

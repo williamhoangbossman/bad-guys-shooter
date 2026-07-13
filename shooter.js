@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener('keydown', (e) => {
         const key = e.key === ' ' ? ' ' : e.key;
-        if (key in keysPressed) {take
+        if (key in keysPressed) {
             keysPressed[key] = true;
             if ([' ', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
                 e.preventDefault();
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 // some funcs
     function subtractHealth() {
-        m
+        enemyHealth -= 10
     }
 
     function addMoney() {
@@ -124,11 +124,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         spaceship.style.left = shipX + 'px';
 
-//health systyem
+        if (enemyHealth <= 0) {
+            console.log("died")
+            delete enemy.element;
 
-        if (enemyHealth <= 100) {
-
-            console.log("YAY MOMMY")
         }
 
 //enemy movement loop
@@ -181,6 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     bullet.element.remove();
                     bullets.splice(i, 1);
                     
+                    subtractHealth()
                     addMoney()
                     addScore()
 

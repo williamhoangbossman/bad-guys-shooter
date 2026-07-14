@@ -2,13 +2,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const spaceship = document.getElementById('spaceship');
     const grid = document.getElementById('grid');
     const enemy = document.getElementById('bossenemy1');
-    const moneyScore = document.getElementById('moneyScore')
-    const scoreNumber = document.getElementById('scoreNumber');
-    let actualMoney = 0;
-    let actualScore = 0;
 
+    const money = document.getElementById('moneyScore');
+    const score = document.getElementById('scoreNumber');
+    let moneyValue = 0;
+    let scoreValue = 0;
+    let wavecount = 1;
+//enemy values
+    let enemyDeath = false;
+    let enemyMaxHealth = 100;
     let enemyHealth = 100;
+// player damage and values 
+    let playerDamage = mathRandom(6, 9)
+    let playerDamageMultiplier = 1;
+    let moneyGain = 1;
+    let moneyMultiplier = 1;
     
+//ship and boss stuff
     const gridWidth = 900;
     const shipWidth = 70;
 
@@ -25,11 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let enemyY = 20;
 
     if (enemy) {
-        enemy.style.left = enemyX + 'px';
-        enemy.style.top = enemyY + 'px';
-        
+         enemy.style.left = enemyX + 'px';
+         enemy.style.top = enemyY + 'px';
+            
         enemy.style.transformOrigin = `${visualEnemyCenter}px center`;
-    }
+     }
     
     let shipX = (gridWidth / 2) - (shipWidth / 2); 
     let shipY = 475; 
@@ -67,20 +77,45 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 // some funcs
+
+    function mathRandom(min, max) {
+        return Math.floor(Math.random() * (max-min + 1)) + min;
+    }
+
+    function spawnEnemy() {
+        enemy.style.display = 'block';
+        enemyDeath = false
+        enemyHealth = enemyMaxHealth + ((wavecount - 1) * 14)
+    }
+
+    function deathHandler() {
+        if (enemyDeath) return;
+        enemyDeath = true;
+
+        addScore()
+        wavecount +=1 //increases waves
+        if (enemy) {
+            enemy.style.display = 'none';
+        }
+        setTimeout(spawnEnemy, 3500) //respawn the brother
+
+        console.log(wavecount)
+    }
+
     function subtractHealth() {
-        enemyHealth -= 10
+        enemyHealth -= playerDamage * playerDamageMultiplier
     }
 
     function addMoney() {
-       actualMoney +=1
-       moneyScore.textContent = actualMoney
-        console.log(moneyScore)
+       moneyValue += moneyGain * moneyMultiplier;
+       money.textContent = moneyValue;
+        console.log(moneyScore);
     }
 
     function addScore() {
-        actualScore += 3602190
-        scoreNumber.textContent = actualScore
-        console.log(scoreNumber)
+        scoreValue += mathRandom(49, 51) + (wavecount - 1) * 2;
+        score.textContent = scoreValue;
+        console.log(scoreNumber);
     }
 
 // bullet stuffs
@@ -109,6 +144,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 //game func
     function gameLoop() {
+
+        if (enemyHealth <= 0) {
+            enemyDeath = true
+
+        }
+
         if (keysPressed.ArrowLeft || keysPressed.a) {
             shipX -= 3.5;
         }
@@ -123,12 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
             shipX = gridWidth - shipWidth;
         }
         spaceship.style.left = shipX + 'px';
-
-        if (enemyHealth <= 0) {
-            console.log("died")
-            delete enemy.element;
-
-        }
 
 //enemy movement loop
         if (enemy) {
@@ -149,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             enemy.style.left = enemyX + 'px';
-        }
+        } 
 
         if (keysPressed[' ']) {
             fireBullet();
@@ -162,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
             bullet.y -= bulletSpeed;
             bullet.element.style.top = bullet.y + 'px';
 
-            if (enemy) {
+            if (enemy && !enemyDeath) {
                 const bulletWidth = 10;
                 const bulletHeight = 60;
                 
@@ -180,23 +215,26 @@ document.addEventListener("DOMContentLoaded", () => {
                     bullet.element.remove();
                     bullets.splice(i, 1);
                     
-                    subtractHealth()
-                    addMoney()
-                    addScore()
+                    subtractHealth();
+                    addMoney();
+                    console.log(enemyHealth);
 
-                    scoreNumber
+                    if (enemyHealth <= 0) {
+                        deathHandler();
+                    }
+                    
                     continue;
                 }
             }
 
-            if (bullet.y < 0) {
+            if (bullet.y < 0) {  
                 bullet.element.remove();
                 bullets.splice(i, 1);
             }
-        }
+        } 
 
         requestAnimationFrame(gameLoop);
-    }
+    } // end of gameloop func
 
     requestAnimationFrame(gameLoop);
 });

@@ -43,7 +43,7 @@ pointer-events:none
     background-position: left;
     background-repeat: no-repeat;
     position: relative;
-    transform: translate(-360px, 30px);
+    transform: translate(-65px, 30px);
 }
 
 #scoreBoard {

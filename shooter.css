@@ -7,15 +7,11 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden; 
+    overflow: hidden;
     font-family: "Press Start 2P", system-ui;
     color: #ffffff;
-    -webkit-user-select:none;
-    -khtml-user-select:none;
-    -moz-user-select:none;
-    -o-user-select:none;
-user-select:none;
-pointer-events:none
+    cursor: url('ui/cursor/cursor.png') 0 0, auto;
+
 }
 
 #moneyScore {
@@ -67,12 +63,12 @@ pointer-events:none
 }
 
 .grid-container {
-    width: 900px; 
-    height: 600px; 
+    width: 900px;
+    height: 600px;
     background-color: black;
     background-image: url('/BGS/SPACE.png');
     background-position: center;
-    position: relative; 
+    position: relative;
 
 }
 
@@ -97,13 +93,13 @@ pointer-events:none
 }
 
 #spaceship {
-    width: 73px; 
+    width: 73px;
     height: 85px;
-    background-image: url('/PNGS/spaceshipshooter.png'); 
+    background-image: url('/PNGS/spaceshipshooter.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    position: absolute; 
+    position: absolute;
 }
 
 /* Bullet Laser */
@@ -117,11 +113,25 @@ pointer-events:none
     position: absolute;
 }
 
-img {
-    -webkit-user-select:none;
-    -khtml-user-select:none;
-    -moz-user-select:none;
-    -o-user-select:none;
-    user-select:none;
-    pointer-events:none
+#pausebutton {
+    width: 65px;
+    height: 65px;
+    background-image: url('ui/in-game/pauseButton.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    transform: translate(815px, 18px);
+    cursor: url('ui/cursor/cursor.png') 0 0, pointer;
+    pointer-events: auto;
+    transition: transform 0.30s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
 }
+
+  #pausebutton:hover {
+    transform: translate(815px, 18px) scale(1.15);
+  }
+  #pausebutton:active {
+    transition: transform 0.15s ease-out;
+    transform: translate(815px, 18px) scale(0.85);
+  }

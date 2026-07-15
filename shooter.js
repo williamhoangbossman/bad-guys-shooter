@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ' ': false
     };
 
-    const bullets = [];
+    const bullets = [];0
     let lastShotTime = 0;
     const fireCooldown = 500;
     const bulletSpeed = 5;

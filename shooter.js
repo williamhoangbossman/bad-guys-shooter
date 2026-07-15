@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const grid = document.getElementById('grid');
     const enemy = document.getElementById('bossenemy1');
 
+    const pauseButton = document.getElementById('pauseButton')
+
     const money = document.getElementById('moneyScore');
     const score = document.getElementById('scoreNumber');
     let moneyValue = 0;
@@ -239,8 +241,6 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(gameLoop);
 });
 
-document.addEventListener('contextmenu', function (event) {
-    event.preventDefault();
-    return false;
-});
-       
+
+
+
